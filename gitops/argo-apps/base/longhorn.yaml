@@ -39,6 +39,8 @@ spec:
             jobEnabled: false
           defaultSettings:
             kubeletRootDir: /var/lib/kubelet
+          csi:
+            kubeletRootDir: "/var/snap/microk8s/common/var/lib/kubelet"
         releaseName: longhorn
         #valuesObject:
         #  csi:
