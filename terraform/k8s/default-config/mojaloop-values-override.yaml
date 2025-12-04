@@ -1,0 +1,78 @@
+_DEFINE:
+  DEPLOYMENT: &DEPLOYMENT
+    replicaCount: 1
+    livenessProbe:
+      initialDelaySeconds: 5
+      timeoutSeconds: 2
+      httpGet:
+        path: /live
+    readinessProbe:
+      initialDelaySeconds: 5
+      timeoutSeconds: 1
+      periodSeconds: 1
+    sidecar:
+      readinessProbe:
+        initialDelaySeconds: 5
+      livenessProbe:
+        initialDelaySeconds: 5
+  CONFIG: &CONFIG
+    replicaCount: 1
+    config: &BASE_CONFIG
+      event_log_filter: ""
+      log_level: warn
+  PROXY_CONFIG: &PROXY_CONFIG
+    config:
+      <<: *BASE_CONFIG
+      proxy_cache:
+        enabled: false
+        proxyConfig:
+          host: mojaloop-redis
+          cluster:
+            - host: mojaloop-redis-leader
+              port: 6379
+  SERVICE: &SERVICE
+    <<: [*DEPLOYMENT, *CONFIG]
+  SERVICE_WITH_PROXY: &SERVICE_WITH_PROXY
+    <<: [*DEPLOYMENT, *PROXY_CONFIG]
+account-lookup-service:
+  account-lookup-service: *SERVICE_WITH_PROXY
+  account-lookup-service-admin: *SERVICE_WITH_PROXY
+quoting-service:
+  quoting-service: *SERVICE
+  quoting-service-handler: *SERVICE_WITH_PROXY
+ml-api-adapter:
+  ml-api-adapter-service: *SERVICE
+  ml-api-adapter-handler-notification: *SERVICE_WITH_PROXY
+centralledger:
+  centralledger-service: *SERVICE
+  centralledger-handler-transfer-prepare: *SERVICE_WITH_PROXY
+  centralledger-handler-transfer-position: *SERVICE
+  centralledger-handler-transfer-position-batch: *SERVICE
+  centralledger-handler-transfer-get: *SERVICE
+  centralledger-handler-transfer-fulfil: *SERVICE
+  centralledger-handler-timeout: *SERVICE
+  centralledger-handler-admin-transfer: *SERVICE
+centralsettlement:
+  centralsettlement-service: *CONFIG
+  centralsettlement-handler-deferredsettlement: *CONFIG
+  centralsettlement-handler-grosssettlement:
+    replicaCount: 0
+    config: *BASE_CONFIG
+  centralsettlement-handler-rules: *CONFIG
+transaction-requests-service: *SERVICE
+thirdparty:
+  auth-svc:
+    replicaCount: 1
+  consent-oracle:
+    replicaCount: 1
+  tp-api-svc:
+    replicaCount: 1
+mojaloop-bulk:
+  bulk-api-adapter:
+    bulk-api-adapter-service: *CONFIG
+    bulk-api-adapter-handler-notification: *CONFIG
+  bulk-centralledger:
+    cl-handler-bulk-transfer-prepare: *CONFIG
+    cl-handler-bulk-transfer-fulfil: *CONFIG
+    cl-handler-bulk-transfer-processing: *CONFIG
+    cl-handler-bulk-transfer-get: *CONFIG

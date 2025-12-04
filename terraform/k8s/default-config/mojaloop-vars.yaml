@@ -1,0 +1,112 @@
+bulk_enabled: false
+third_party_enabled: false
+mcm_chart_version: 1.2.4
+mojaloop_chart_version: 16.0.0
+currency: ${currency}
+ttk_test_currency1: ${currency}
+ttk_test_currency2: USD
+ttk_test_currency3: CAD
+mcm_ingress_internal_lb: true
+mojaloop_ingress_internal_lb: true
+finance_portal_ingress_internal_lb: true
+ml_testing_toolkit_cli_chart_version: 15.6.0-20869-5510a51
+hub_provisioning_ttk_test_case_version: 17.0.6
+onboarding_collection_tag: 17.0.6
+onboarding_net_debit_cap: 0
+onboarding_funds_in: 0
+grafana_dashboard_tag: v16.3.0-snapshot.24 # TODO: update once v16.1.x is published
+enable_istio_injection: true
+opentelemetry_enabled: false
+opentelemetry_namespace_filtering_enable: false
+central_ledger_handler_transfer_position_batch_processing_enabled: false
+central_ledger_handler_transfer_position_batch_size: 100
+central_ledger_handler_transfer_position_batch_consume_timeout_ms: 10
+central_ledger_cache_enabled: true
+central_ledger_cache_expires_in_ms: 1000
+central_ledger_monitoring_prefix: "moja_cl_"
+quoting_service_monitoring_prefix: "moja_qs_"
+ml_api_adapter_monitoring_prefix: "moja_ml_"
+account_lookup_service_monitoring_prefix: "moja_als_"
+ttk_gp_testcase_labels: "p2p"
+ttk_setup_testcase_labels: ""
+ttk_cleanup_testcase_labels: ""
+ttk_hub_provisioning_testcase_labels: ""
+jws_rotation_period_hours: 672
+jws_rotation_renew_before_hours: 1
+fspiop_use_ory_for_auth: true
+mojaloop_tolerations:
+  - key: "moja-enabled"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+workload_definitions:
+  core_api_adapters:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/CORE-API-ADAPTERS
+                  operator: In
+                  values:
+                    - "enabled"
+  central_ledger_service:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/CENTRAL-LEDGER-SVC
+                  operator: In
+                  values:
+                    - "enabled"
+  core_handlers:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/CORE-HANDLERS
+                  operator: In
+                  values:
+                    - "enabled"
+  als_oracles:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/ALS-ORACLES
+                  operator: In
+                  values:
+                    - "enabled"
+  account_lookup_service:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/ACCOUNT-LOOKUP-SERVICE
+                  operator: In
+                  values:
+                    - "enabled"
+  quoting_service:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/QUOTING-SERVICE
+                  operator: In
+                  values:
+                    - "enabled"
+  central_settlement:
+    affinity_definition:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload-class.mojaloop.io/CENTRAL-SETTLEMENT
+                  operator: In
+                  values:
+                    - "enabled"
