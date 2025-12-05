@@ -10,9 +10,11 @@ resources:
   - ../../../base/reflector.yaml
   - ../../../base/reloader.yaml
   - ../../../base/crossplane.yaml
+  - ../../../base/crossplane-providers.yaml
 #  - ../../../base/utils-post-config.yaml
   - ../../../base/istio.yaml
 #  - ../../../base/istio-gw.yaml
+  - ../../../base/istio-gw-deploy.yaml
   - ../../../base/cert-manager.yaml
 # - ../../../base/consul.yaml
   - ../../../base/percona-operator.yaml

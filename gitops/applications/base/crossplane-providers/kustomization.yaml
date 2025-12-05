@@ -4,14 +4,14 @@ resources:
   - debug-config.yaml
   - ansible.yaml
   - aws.yaml
-  - gitlab.yaml
+#  - gitlab.yaml
   - helm.yaml
   - kubernetes.yaml
-  - netbird.yaml
+#  - netbird.yaml
   - terraform.yaml
   - vault.yaml
-  - zitadel.yaml
-  - grafana.yaml
+#  - zitadel.yaml
+#  - grafana.yaml
 
 secretGenerator:
   - name: terraformrc
