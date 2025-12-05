@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: pdsl-unified-gateway
+spec:
+  selector:
+          #istio: istio-ingressgateway
+    istio: internal-ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*.pdslkenya.com" 
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  hosts:
+  - "argo.pdslkenya.com"
+  gateways:
+  - pdsl-unified-gateway
+  http:
+  - route:
+    - destination:
+        host: argocd-server.argocd.svc.cluster.local
+        port:
+          number: 80
