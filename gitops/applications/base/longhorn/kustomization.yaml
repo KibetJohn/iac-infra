@@ -7,5 +7,5 @@ resources:
 #  - ceph-filsystem-crs.yaml
   - storageclass.yaml
   - istio-gw-internal.yaml
-  - istio-gw-external.yaml
+  #- istio-gw-external.yaml
   - istio-argo.yaml
