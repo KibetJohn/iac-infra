@@ -27,4 +27,4 @@ setupJob:
   machinekeyWriter:
     image:
       repository: registry.k8s.io/kubectl
-      tag: 1.29
+      tag: latest
