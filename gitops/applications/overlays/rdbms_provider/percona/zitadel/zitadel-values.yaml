@@ -26,5 +26,5 @@ zitadel:
 setupJob:
   machinekeyWriter:
     image:
-      repository: registry.k8s.io/kubectl
+      repository: bitnami/kubectl
       tag: latest
