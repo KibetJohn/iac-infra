@@ -1,7 +1,9 @@
+---
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: pdsl-${ARGOCD_ENV_istio_internal_gateway_name}
+  namespace: ${ARGOCD_ENV_istio_internal_gateway_namespace}
 spec:
   selector:
     istio: ${ARGOCD_ENV_istio_internal_gateway_name}
@@ -22,7 +24,7 @@ spec:
   hosts:
   - "argo.pdslkenya.com"
   gateways:
-  - pdsl-${ARGOCD_ENV_istio_internal_gateway_name}
+  - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-${ARGOCD_ENV_istio_internal_gateway_name}
   http:
   - route:
     - destination:
