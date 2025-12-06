@@ -23,3 +23,8 @@ zitadel:
             Type: 1
   configSecretName: "${ARGOCD_ENV_zitadel_config_secret_name}"
   configSecretKey: config.yaml
+setupJob:
+  machinekeyWriter:
+    image:
+      repository: registry.k8s.io/kubectl
+      tag: 1.29
