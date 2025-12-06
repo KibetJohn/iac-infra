@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - debug-config.yaml
   - ansible.yaml
-  - aws.yaml
+#  - aws.yaml
 #  - gitlab.yaml
   - helm.yaml
   - kubernetes.yaml
