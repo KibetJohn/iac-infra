@@ -1,3 +1,20 @@
+
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: pdsl-vault-${ARGOCD_ENV_zitadel_istio_wildcard_gateway_name}
+  namespace: ${ARGOCD_ENV_zitadel_istio_gateway_namespace}
+spec:
+  selector:
+    istio: ${ARGOCD_ENV_istio_internal_gateway_name}
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*.pdslkenya.com"
+---
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
@@ -43,7 +60,7 @@ metadata:
 spec:
   gateways:
     #- ${ARGOCD_ENV_zitadel_istio_gateway_namespace}/${ARGOCD_ENV_zitadel_istio_wildcard_gateway_name}
-    - ${ARGOCD_ENV_zitadel_istio_gateway_namespace}/pdsl-${ARGOCD_ENV_zitadel_istio_wildcard_gateway_name}
+    - ${ARGOCD_ENV_zitadel_istio_gateway_namespace}/pdsl-vault-${ARGOCD_ENV_zitadel_istio_wildcard_gateway_name}
   hosts:
     - "vault.${ARGOCD_ENV_zitadel_dns_subdomain}"
   http:
