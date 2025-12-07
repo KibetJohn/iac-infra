@@ -6,8 +6,8 @@ zitadel:
   configmapConfig:
     Log:
       Level: ${ARGOCD_ENV_zitadel_log_level}
-    ExternalPort: 443
-    ExternalSecure: true
+    ExternalPort: 31080
+    ExternalSecure: false
     ExternalDomain: zitadel.${ARGOCD_ENV_zitadel_dns_subdomain}
     TLS:
       Enabled: false
