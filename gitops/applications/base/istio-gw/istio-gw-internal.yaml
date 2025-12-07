@@ -44,6 +44,7 @@ spec:
       containers:
       - name: istio-proxy
         image: auto # The image will automatically update each time the pod starts.
+        imagePullPolicy: IfNotPresent
         # Drop all privileges, allowing to run as non-root
         securityContext:
           capabilities:
