@@ -5,6 +5,7 @@ resources:
   - istio-gw-external.yaml
   - istio-gw-internal.yaml
   - istio-argo.yaml
+  - istio-vault.yaml
 
 #helmCharts:
 #  - name: gateway
