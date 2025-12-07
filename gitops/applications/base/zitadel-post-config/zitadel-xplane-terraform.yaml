@@ -75,5 +75,6 @@ spec:
       }
       provider "zitadel" {
           domain = "zitadel.${ARGOCD_ENV_zitadel_dns_subdomain}"
+          port = "31080"
           jwt_profile_file = "$${path.module}/zitadel-admin-sa.json"
       }
