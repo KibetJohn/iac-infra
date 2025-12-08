@@ -9,7 +9,7 @@ resource "zitadel_application_oidc" "argocd" {
   project_id                  = zitadel_project.argocd.id
   org_id                      = local.org_id
   name                        = "argocd"
-  redirect_uris               = ["http://argo.pdslkenya:31080/auth/callback"]
+  redirect_uris               = ["http://${var.argocd_fqdn}:31080/auth/callback"]
   response_types              = ["OIDC_RESPONSE_TYPE_CODE"]
   grant_types                 = ["OIDC_GRANT_TYPE_AUTHORIZATION_CODE"]
   post_logout_redirect_uris   = ["http://${var.argocd_fqdn}:31080"]
