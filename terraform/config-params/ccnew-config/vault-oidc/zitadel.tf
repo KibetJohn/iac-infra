@@ -15,7 +15,7 @@ resource "zitadel_application_oidc" "vault_ui" {
   app_type                    = "OIDC_APP_TYPE_WEB"
   auth_method_type            = "OIDC_AUTH_METHOD_TYPE_BASIC"
   version                     = "OIDC_VERSION_1_0"
-  dev_mode                    = false
+  dev_mode                    = true
   access_token_type           = "OIDC_TOKEN_TYPE_BEARER"
   access_token_role_assertion = true
   id_token_role_assertion     = true

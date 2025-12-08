@@ -15,7 +15,7 @@ resource "zitadel_application_oidc" "k8s_cli" {
   app_type                    = "OIDC_APP_TYPE_NATIVE"
   auth_method_type            = "OIDC_AUTH_METHOD_TYPE_NONE"
   version                     = "OIDC_VERSION_1_0"
-  dev_mode                    = false
+  dev_mode                    = true
   access_token_type           = "OIDC_TOKEN_TYPE_JWT"
   access_token_role_assertion = true
   id_token_role_assertion     = true
