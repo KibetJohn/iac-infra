@@ -9,10 +9,10 @@ resource "zitadel_application_oidc" "argocd" {
   project_id                  = zitadel_project.argocd.id
   org_id                      = local.org_id
   name                        = "argocd"
-  redirect_uris               = ["https://${var.argocd_fqdn}/auth/callback"]
+  redirect_uris               = ["http://argo.pdslkenya:31080/auth/callback"]
   response_types              = ["OIDC_RESPONSE_TYPE_CODE"]
   grant_types                 = ["OIDC_GRANT_TYPE_AUTHORIZATION_CODE"]
-  post_logout_redirect_uris   = ["https://${var.argocd_fqdn}"]
+  post_logout_redirect_uris   = ["http://${var.argocd_fqdn}:31080"]
   app_type                    = "OIDC_APP_TYPE_WEB"
   auth_method_type            = "OIDC_AUTH_METHOD_TYPE_BASIC"
   version                     = "OIDC_VERSION_1_0"
@@ -99,7 +99,7 @@ g, ${zitadel_project.argocd.id}:${var.user_rbac_group}, role:readonly
 EOF
   oidc_config = <<EOF
 name: Zitadel
-issuer: https://${var.zitadel_fqdn}
+issuer: http://${var.zitadel_fqdn}:31080
 clientID: ${local.formattedclientidstring}
 clientSecret: ${local.formattedclientsecretstring}
 requestedScopes:
@@ -107,6 +107,6 @@ requestedScopes:
   - profile
   - email
   - groups
-logoutURL: https://${var.zitadel_fqdn}/oidc/v1/end_session
+logoutURL: http://${var.zitadel_fqdn}:31080/oidc/v1/end_session
 EOF
 }
