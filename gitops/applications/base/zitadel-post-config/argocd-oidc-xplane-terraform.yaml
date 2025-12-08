@@ -86,6 +86,9 @@ spec:
 
       provider "zitadel" {
           domain = "zitadel.${ARGOCD_ENV_zitadel_dns_subdomain}"
+          domain = "zitadel.pdslkenya.com"
+          port = "31080"
+          insecure = "true"
           jwt_profile_file = "$${path.module}/zitadel-admin-sa.json"
       }
       provider "kubernetes" {}
