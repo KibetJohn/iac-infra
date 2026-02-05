@@ -6,6 +6,7 @@ resources:
   - istio-gw-internal.yaml
   - istio-argo.yaml
   - istio-vault.yaml
+  - istio-bulk-sms.yaml
 
 #helmCharts:
 #  - name: gateway
