@@ -22,7 +22,7 @@ metadata:
   namespace: dev
 spec:
   hosts:
-  - "vault.pdslkenya.com"
+  - "bulk-sms-portal.pdslkenya.com"
   gateways:
   - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-bulk-sms-${ARGOCD_ENV_istio_internal_gateway_name}
   http:
