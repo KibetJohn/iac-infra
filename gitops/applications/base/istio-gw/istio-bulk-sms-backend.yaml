@@ -26,49 +26,49 @@ spec:
   gateways:
   - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-bulk-sms-${ARGOCD_ENV_istio_internal_gateway_name}
   http:
-  - match
+  - match:
     - uri:
         prefix: "/api/auth"
     route:
     - destination:
         host: sms-auth-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/audit"
     route:
     - destination:
         host: sms-audit-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/contacts"
     route:
     - destination:
         host: sms-contacts-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/compliance"
     route:
     - destination:
         host: sms-compliance-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/messaging"
     route:
     - destination:
         host: sms-messaging-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/payment"
     route:
     - destination:
         host: sms-audit-payment.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/message-template"
     route:
     - destination:
         host: sms-message-template-service.dev.svc.cluster.local
-  - match
+  - match:
     - uri:
         prefix: "/api/subscription-pricing"
     route:
