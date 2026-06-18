@@ -18,7 +18,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: pdsl-bulk-sms
+  name: pdsl-bulk-sms-backend
   namespace: dev
 spec:
   hosts:
