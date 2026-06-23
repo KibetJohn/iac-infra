@@ -54,6 +54,12 @@ spec:
         host: sms-message-template-service.dev.svc.cluster.local
   - match:
     - uri:
+        prefix: "/api/gateway"
+    route:
+    - destination:
+        host: sms-api-gateway-service.dev.svc.cluster.local
+  - match:
+    - uri:
         prefix: "/api/subscription-pricing"
     route:
     - destination:
