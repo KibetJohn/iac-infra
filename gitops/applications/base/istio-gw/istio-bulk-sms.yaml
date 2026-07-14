@@ -33,7 +33,8 @@ spec:
           number: 80
     corsPolicy:
       allowOrigins:
-        - regex: ".*"
+        - exact: "http://bulk-sms-portal.pdslkenya.com"
+        - exact: "http://bulk-sms-portal.pdslkenya.com:31080"
       allowMethods:
         - GET
         - POST
