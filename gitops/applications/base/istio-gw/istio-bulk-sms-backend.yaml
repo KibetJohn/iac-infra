@@ -19,17 +19,17 @@ spec:
         - PUT
         - DELETE
         - PATCH
-       allowCredentials: true
-       allowHeaders:
-         - content-type
-         - authorization
-         - x-request-id
-         - accept
-       exposeHeaders:
-         - x-total-count
-         - x-rate-limit-remaining
-         - x-request-id
-       maxAge: "24h"
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
   - match:
     - uri:
         prefix: "/api/auth"
