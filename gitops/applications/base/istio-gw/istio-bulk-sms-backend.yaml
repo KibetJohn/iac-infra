@@ -10,29 +10,49 @@ spec:
   gateways:
   - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-bulk-sms-${ARGOCD_ENV_istio_internal_gateway_name}
   http:
-    - corsPolicy:
-        allowOrigins:
-          - regex: ".*"
-        allowMethods:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
-        allowCredentials: true
-        allowHeaders:
-          - content-type
-          - authorization
-          - x-request-id
-          - accept
-        exposeHeaders:
-          - x-total-count
-          - x-rate-limit-remaining
-          - x-request-id
-        maxAge: "24h"
+    #- corsPolicy:
+    #    allowOrigins:
+    #      - regex: ".*"
+    #    allowMethods:
+    #      - GET
+    #      - POST
+    #      - PUT
+    #      - DELETE
+    #      - PATCH
+    #    allowCredentials: true
+    #    allowHeaders:
+    #      - content-type
+    #      - authorization
+    #      - x-request-id
+    #      - accept
+    #    exposeHeaders:
+    #      - x-total-count
+    #      - x-rate-limit-remaining
+    #      - x-request-id
+    #    maxAge: "24h"
   - match:
     - uri:
         prefix: "/api/auth"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-auth-service.dev.svc.cluster.local
