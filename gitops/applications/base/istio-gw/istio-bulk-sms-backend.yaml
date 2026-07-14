@@ -59,48 +59,208 @@ spec:
   - match:
     - uri:
         prefix: "/api/audit"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-audit-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/contacts"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-contacts-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/compliance"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-compliance-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/messaging"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-messaging-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/payment"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-payment-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/message-template"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-message-template-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/gateway"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-api-gateway-service.dev.svc.cluster.local
   - match:
     - uri:
         prefix: "/api/subscription-pricing"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
     route:
     - destination:
         host: sms-subscrptn-prcng-plan-svc.dev.svc.cluster.local
