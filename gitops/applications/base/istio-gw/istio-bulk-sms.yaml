@@ -31,3 +31,23 @@ spec:
         host: sms-bulk-sms-portal.dev.svc.cluster.local
         port:
           number: 80
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
