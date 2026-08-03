@@ -5,7 +5,7 @@ resources:
   - itp.yaml
 
 helmCharts:
-  - name: camel
+  - name: camel-k
     releaseName: huduma-camel
     version: 2.10.1
     repo: https://apache.github.io/camel-k/charts
