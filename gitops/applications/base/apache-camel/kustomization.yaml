@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespaces.yaml
+  - itp.yaml
+
+helmCharts:
+  - name: camel
+    releaseName: huduma-camel
+    version: 2.10.1
+    repo: https://apache.github.io/camel-k/charts
+    valuesFile: apache-values.yaml
+    namespace: huduma-camel

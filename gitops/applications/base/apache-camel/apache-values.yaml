@@ -1,0 +1,5 @@
+nameOverride: "huduma-camel"
+fullnameOverride: "huduma-camel"
+operator:
+  imagePullSecrets:
+    - name: "huduma-camel-imagepullsecret"

@@ -1,0 +1,12 @@
+apiVersion: camel.apache.org/v1
+kind: IntegrationPlatform
+metadata:
+  labels:
+    app: hudma-camel
+  name: huduma-camel
+spec:
+  build:
+    registry:
+      address: harbor.pdslkenya.com:80
+      organization: pdsl
+      secret: huduma-camel-imagepullsecret
