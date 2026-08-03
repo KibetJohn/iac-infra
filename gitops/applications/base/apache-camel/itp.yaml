@@ -10,3 +10,4 @@ spec:
       address: harbor.pdslkenya.com:80
       organization: pdsl
       secret: huduma-camel-imagepullsecret
+      insecure: true
