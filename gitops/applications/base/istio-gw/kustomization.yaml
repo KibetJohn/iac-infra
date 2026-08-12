@@ -8,7 +8,9 @@ resources:
   - istio-vault.yaml
   - istio-bulk-sms.yaml
   - istio-bulk-sms-backend.yaml
-
+  - istio-huduma-admin-portal.yaml
+  - istio-huduma-citizen-portal.yaml
+  - istio-huduma-hvc-backend.yaml
 #helmCharts:
 #  - name: gateway
 #    releaseName: int-gateway
