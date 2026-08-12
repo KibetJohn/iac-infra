@@ -1,0 +1,54 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: pdsl-huduma-hvc-${ARGOCD_ENV_istio_internal_gateway_name}
+  namespace: ${ARGOCD_ENV_istio_internal_gateway_namespace}
+spec:
+  selector:
+    istio: ${ARGOCD_ENV_istio_internal_gateway_name}
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*.pdslkenya.com" 
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: pdsl-huduma-hvc-citizen-portal
+  namespace: dev
+spec:
+  hosts:
+  - "huduma-citizen-portal.pdslkenya.com"
+  gateways:
+  - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-huduma-hvc-${ARGOCD_ENV_istio_internal_gateway_name}
+  http:
+  - route:
+    - destination:
+        host: hvc-citizen-portal-service.dev.svc.cluster.local
+        port:
+          number: 80
+    corsPolicy:
+      allowOrigins:
+        - exact: "http://huduma-citizen-portal.pdslkenya.com"
+        - exact: "http://huduma-citizen-portal.pdslkenya.com:31080"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"

@@ -1,0 +1,64 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: huduma-hvc-backend
+  namespace: dev
+spec:
+  hosts:
+  - "huduma-hvc-dev-api.pdslkenya.com"
+  gateways:
+  - ${ARGOCD_ENV_istio_internal_gateway_namespace}/pdsl-huduma-hvc-${ARGOCD_ENV_istio_internal_gateway_name}
+  http:
+  - match:
+    - uri:
+        prefix: "/api/auth"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
+    route:
+    - destination:
+        host: hvc-auth-service.dev.svc.cluster.local
+  - match:
+    - uri:
+        prefix: "/api/workflow"
+    corsPolicy:
+      allowOrigins:
+        - regex: ".*"
+      allowMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+      allowCredentials: true
+      allowHeaders:
+        - content-type
+        - authorization
+        - x-request-id
+        - accept
+      exposeHeaders:
+        - x-total-count
+        - x-rate-limit-remaining
+        - x-request-id
+      maxAge: "24h"
+    route:
+    - destination:
+        host: hvc-workflow-service.dev.svc.cluster.local
